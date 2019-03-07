@@ -57,12 +57,8 @@ public class User implements Serializable, UserDetails {
     private List<PasswordHistory> passwordHistories;
     private String refreshToken;
     private String accessToken;
-    private Boolean twoFAEnabled;
-    private String twoFASecret;
     private Instant lastLoginTime;
     private Instant expirationDate;
-
-    private List<TwoFAResetCode> twoFAResetCodes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
