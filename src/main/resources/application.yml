@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: event-service
+
+  data:
+    mongodb:
+      #uri: mongodb+srv://root:root@cluster0-twvzm.azure.mongodb.net/event
+      uri: mongodb+srv://root:root@cluster0-twvzm.azure.mongodb.net/event
+      #uri: mongodb://root:root@192.168.254.100:27017/event
+      #driverClassName=com.mongodb.Mongo
+      #username: admin
+      #password: admin
+      #host: 192.168.254.100
+      database: event
+      #port: 27017
+      #authentication-database: admin
+  jpa:
+    hibernate:
+      ddl-auto: none
+  security:
+    user:
+      name: user
+      password: user
+
+server:
+  port: 8096
+
+
+security:
+  jwt:
+    token:
+      secret-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDODfHWXMJpESxuPSCFI9lpr9ozK95nd369IhjxY488aY0vT/5a06YHCNSVUGe2F9Hp1kjMAvaQ6J6lMdcIQdaQh38wp5AzV/Pa3LKWD7JWJKJjlTbuXTu4x4acMFoiH3IJiiWXEHN4CamaAf+skyCTu8q0ObGMCy0YtSsI9Ji+LPOLi6ctdtSVpgqQMFAVaU+qxypNTTnmnAH8
+        COw7LQmkdJtyJDyp9TbjL/hmNdQlWDsuxk0HPyG0nzoqBL0hFJooJNkaje34UJAK
+        M7aRegyMjCVoZLectikj5qtVfjEYzcJqq94uBVt8mjct/kveKrwYIPX5ib8pnQGD
+        +CmKl2hJAgMBAAECggEBAK8ngWSDsyqW05rd0S/72ksRlbyb1NFE7XIecu92fwKO
+        gtot+HwCn4YpRnOqRo6uTtykL3tkJW3mnzyzUiONu7Ndyot0VIqggASSSChxLVo2
+        h+d4ppoWnLakvNM18thAvLJJQUzZSh5GsGneuxRaeH28S0HKLRdrRKlVD0Dsko5M
+        pgTTPf1FoJloGiGMZKI2dlU9QEyO4bkD/L4eQZSPCP+rKVBcbfWmPZlK36xph2gG
+        dary/LbotskR+Q48u3prD3Zcyd7FtaRaeIJLEXi4RZGTCLu1vRL8civyslq+QjiG
+        CnJzo1jgg6J6PF62t40VYU8ambUtu8HPUE5NMVl69pECgYEA+JY31GJXmzOf53oP
+        CL2BLNnIMCPOhmymSYlaedMXmNivyUR4ZFXIOdvPeKjzTIQ/o6rtbeq4Gd3UZ3Sz
+        L0SH09+/E9cS4oHntZEyg/Y4pzUqCncZW+jqg68JRBWzwxU/9od59quB9UbaFcpU
+        mITlouvlHZ9YgEhhy3x1OSxxOdUCgYEA1DMF2LNdsX/fMtO0/nfcs0tTM73+/djr
+        Kotc4tv0ydOq3LjkUxGxyqlrSyPc7H04mquNXOwYdbDb73gmwmT2tx714zVpZ/Tj
+        68U/U8t08df1CMFoulIrnlwKpuRlfUfOijRZAblDLW9acQo+DeVEKxQXJweTbeRU
+        BUUyVGQHmqUCgYA/9H3moWqCnpSMPEXz7LV4MYukfwHaaceaccEaSKnwhAct0/TZ
+        c4xw/lFxbJ4z2G57EDXHqrS0yvKjr02OYqZDZ3REiXftWJihiPqjIszOkAoB6URX
+        9iOnv3e10ZOPJD9xkMdbJCLqVNE0+/opxz9BXEl1BpMBZh3q+Vk7XWjABQKBgEnz
+        3j2/hQ+vOOJF1fY5X7k8ryqBNLTTPGH/X8fQUGdmVU3HQguRRx0SHkp5nSzuFyQQ
+        VZvkzEF3+a5jeV6WQUVgjOE6ZBnOxwAMJh3V8lO2p7b9cLo+mOT/vtabEqOuutR/
+        meV342maPTLYFvhQxokc31TC1yadRIrxqrCui9fhAoGAJlBe204u8pW/PvpRGslp
+        8j5wWBQ9OPyZmUSOlqY8zU0r6a/gPX0nDkHlO9gC6w4NFnG1OOPauwva8h48M9Cz
+        ykcvIpxmtO3gHINQBoYBuqly2ks52Iuv/58PSb0Xwzb+EkiIsYfiLQg7vn5BjDYD
+        36N3vhGpnPH6TYHO6f6Omuo=
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    com.example: DEBUG
+  file: app.log
