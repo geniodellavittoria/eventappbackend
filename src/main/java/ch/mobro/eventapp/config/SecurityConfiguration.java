@@ -21,21 +21,6 @@ import static org.springframework.http.HttpMethod.POST;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    /*
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests().anyRequest().anonymous();
-        http.antMatcher("/**")
-                .authorizeRequests()
-                .antMatchers("/login**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin().disable();
-    }*/
-
     final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
@@ -50,7 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //@formatter:off
         http
                 .httpBasic().disable()
                 .csrf().disable()
@@ -58,24 +42,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/login", "/error").permitAll()
-                //.antMatchers(HttpMethod.GET, "/vehicles/**").permitAll()
-                //.antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN")
-                //.antMatchers(HttpMethod.GET, "/v1/vehicles/**").permitAll()
+                .antMatchers("/", "/csrf", "/v2/api-docs", "/swagger-resources/configuration/ui",
+                        "/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security",
+                        "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
-        //@formatter:on
     }
 
 
-    /*
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
-        http.authorizeRequests().antMatchers("/register", "/login").permitAll()
-                .anyRequest().authenticated().and().formLogin();
-    }
-    */
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
