@@ -80,23 +80,6 @@ public class AuthController {
 
     }
 
-    //@HystrixCommand(fallbackMethod = "authTimedOut")
-    @PostMapping(AUTH_LOGIN)
-    public ResponseEntity<?> authenticate(@Valid @RequestBody UserCredentials userCredentials) {
-        log.info("Authenticate user");
-        /*Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        userCredentials.getUsername(),
-                        userCredentials.getPassword()
-                )
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-*/
-        //String jwt = jwtTokenProvider.generateToken(authentication);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
     @PostMapping("/register")
     public void register(@Valid @RequestBody UserRegistrationForm userRegistrationForm) {
         User user = User.builder()

@@ -49,7 +49,7 @@ public class EventInvitationController {
         return event.get();
     }
 
-    @DeleteMapping(EVENT_INVITATION_ID)
+    @DeleteMapping(INVITATION_ID)
     @Timed
     public Event deleteEventInvitation(@PathVariable("id") String id,
                                        @PathVariable(Variables.EVENT_INVITATION_ID) String eventInvitationId) {

@@ -29,9 +29,6 @@ public class EventController {
         this.eventRepository = eventRepository;
     }
 
-    //@Autowired
-    //private UserClient userClient;
-
     @GetMapping
     @Timed
     public List<Event> getEvents() {
@@ -39,8 +36,6 @@ public class EventController {
     }
 
     @GetMapping(ID)
-    //@MessageMapping(RestPaths.ID)
-    //@SendTo
     @Timed
     public Optional<Event> getEvent(@PathVariable("id") String id) {
         return eventRepository.findById(id);
@@ -49,11 +44,6 @@ public class EventController {
     @PostMapping
     @Timed
     public Event createEvent(@Valid @RequestBody Event event) {
-        // todo: fix user feign client
-        /*User user = userClient.getUser(event.getUserId());
-        if (user != null) {
-            event.setUser(user);
-        }*/
         return eventRepository.save(event);
     }
 

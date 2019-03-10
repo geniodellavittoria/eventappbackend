@@ -48,7 +48,7 @@ public class EventRegistrationController {
         return event.get();
     }
 
-    @DeleteMapping(EVENT_REGISTRATION_ID)
+    @DeleteMapping(REGISTRATION_ID)
     @Timed
     public Event deleteEventRegistration(@PathVariable("id") String id,
                                          @PathVariable(Variables.EVENT_REGISTRATION_ID) String eventRegistrationdId) {

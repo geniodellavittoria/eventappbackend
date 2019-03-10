@@ -20,7 +20,8 @@ public class Event implements Serializable {
     @Id
     private String id;
 
-    private User user;
+    private User organizer;
+
     private String userId;
 
     private String name;
