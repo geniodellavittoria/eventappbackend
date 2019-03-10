@@ -1,0 +1,6 @@
+version: '3'
+services:
+  eventapp:
+    ports:
+      - 8096:8080
+    image: p4scal/eventapp
