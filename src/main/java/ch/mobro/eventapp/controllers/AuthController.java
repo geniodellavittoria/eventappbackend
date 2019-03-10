@@ -59,7 +59,7 @@ public class AuthController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @PostMapping("/login")
+    @PostMapping(AUTH_LOGIN)
     public ResponseEntity<?> login(@Valid @RequestBody UserCredentials userCredentials) {
         log.info("Authenticate user");
 

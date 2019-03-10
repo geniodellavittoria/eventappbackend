@@ -15,5 +15,5 @@ public class PathConstants {
     public static final String ROLE = "/api/v1/role";
     public static final String ROLE_ROLE_ID = ROLE + "/{id}";
     public static final String AUTH = "/auth";
-    public static final String AUTH_LOGIN = "/authenticate";
+    public static final String AUTH_LOGIN = "/login";
 }
