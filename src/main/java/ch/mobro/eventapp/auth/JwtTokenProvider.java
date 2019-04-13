@@ -50,6 +50,7 @@ public class JwtTokenProvider {
                 .collect(Collectors.toList()));
         claims.put("surname", user.getSurname());
         claims.put("name", user.getName());
+        claims.put("email", user.getEmail());
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
         return Jwts.builder()//
