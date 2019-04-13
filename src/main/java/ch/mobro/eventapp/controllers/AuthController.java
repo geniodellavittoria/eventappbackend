@@ -27,6 +27,7 @@ import javax.validation.Valid;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ch.mobro.eventapp.config.PathConstants.AUTH;
@@ -65,19 +66,19 @@ public class AuthController {
 
         try {
             String username = userCredentials.getUsername();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userCredentials.getPassword()));
-            String token = jwtTokenProvider.createToken(username, repository.findByUsername(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"))
-                    .getRoles()
-                    .stream()
-                    .map(Role::getName)
-                    .collect(Collectors.toList()));
-            return ok(new JwtTokenResponse(username, token));
-        } //catch (AuthenticationException e) {
+            Optional<User> user = repository.findByUsername(username);
+            if (user.isPresent()) {
+
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userCredentials.getPassword()));
+                String token = jwtTokenProvider.createToken(user.get());
+                return ok(new JwtTokenResponse(username, token));
+            } else {
+                throw new UsernameNotFoundException("Username " + username + "not found");
+            }
+        }
         catch (Exception e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }
-
     }
 
     @PostMapping("/register")
