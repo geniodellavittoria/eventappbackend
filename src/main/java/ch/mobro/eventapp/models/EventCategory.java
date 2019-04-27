@@ -9,8 +9,6 @@ import org.springframework.data.annotation.Id;
 @EqualsAndHashCode
 @Builder
 public class EventCategory {
-    @Id
-    private String id;
 
     private String category;
 }

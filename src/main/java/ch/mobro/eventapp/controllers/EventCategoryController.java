@@ -54,7 +54,7 @@ public class EventCategoryController {
         if (!event.isPresent()) {
             return null;
         }
-        event.get().getCategories().removeIf(c -> c.getId().equals(categoryId));
+        event.get().getCategories().removeIf(c -> c.getCategory().equals(categoryId));
         repository.save(event.get());
         return event.get();
     }
