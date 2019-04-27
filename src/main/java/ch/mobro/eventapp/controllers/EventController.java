@@ -37,8 +37,8 @@ public class EventController {
 
     @GetMapping(ID)
     @Timed
-    public Optional<Event> getEvent(@PathVariable("id") String id) {
-        return eventRepository.findById(id);
+    public Event getEvent(@PathVariable("id") String id) {
+        return eventRepository.findById(id).orElse(null);
     }
 
     @PostMapping

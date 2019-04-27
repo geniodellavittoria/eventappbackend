@@ -32,9 +32,9 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping(ID)
-    public Optional<User> getUser(@PathVariable String id) {
-        return repository.findById(id);
+    @GetMapping(USERNAME)
+    public User getUser(@PathVariable("username") String username) {
+        return repository.findByUsername(username).orElse(null);
     }
 
     @GetMapping
@@ -55,22 +55,21 @@ public class UserController {
         return repository.save(user);
     }
 
-    @DeleteMapping(ID)
+    @DeleteMapping(USERNAME)
     @Timed
-    public void deleteUser(@PathVariable String id) {
-        repository.deleteById(id);
+    public void deleteUser(@PathVariable("username") String id) {
+        repository.deleteByUsername(id);
     }
 
-    @PostMapping(ID)
+    @PostMapping(USERNAME)
     @Timed
-    public User changePassword(@PathVariable("id") String id, @Valid @RequestBody ChangePasswordForm changePasswordForm) {
-        Optional<User> user = repository.findById(id);
+    public User changePassword(@PathVariable("username") String username, @Valid @RequestBody ChangePasswordForm changePasswordForm) {
+        Optional<User> user = repository.findByUsername(username);
         if (!user.isPresent() || !changePasswordForm.getPassword().equals(changePasswordForm.getConfirmPassword())) {
             return null;
         }
         PasswordHistory passwordHistory = new PasswordHistory(now(), passwordEncoder.encode(changePasswordForm.getPassword()));
         List<PasswordHistory> passwordHistories = user.get().getPasswordHistories();
-        //passwordHistories.stream().
         passwordHistories.add(passwordHistory);
         repository.save(user.get());
         return user.get();

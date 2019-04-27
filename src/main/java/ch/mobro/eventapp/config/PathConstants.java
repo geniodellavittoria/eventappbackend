@@ -3,6 +3,7 @@ package ch.mobro.eventapp.config;
 public class PathConstants {
     public static final String EVENT = "/api/v1/event";
     public static final String ID = "{id}";
+    public static final String USERNAME = "{username}";
     public static final String EVENT_CATEGORY = "/category";
     public static final String CATEGORY_ID = "/{" + Variables.CATEGORY_ID + "}";
     public static final String INVITATION_ID = "/{" + Variables.CATEGORY_ID + "}";
