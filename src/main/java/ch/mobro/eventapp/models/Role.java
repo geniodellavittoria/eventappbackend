@@ -16,8 +16,6 @@ import java.io.Serializable;
 @Document
 public class Role implements Serializable {
 
-    @Id
-    private String id;
     private String name;
 
 }

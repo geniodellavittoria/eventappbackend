@@ -10,9 +10,6 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class EventInvitation {
 
-    @Id
-    private String id;
-
     private String eventId;
 
     private String email;

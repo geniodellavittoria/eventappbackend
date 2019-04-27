@@ -12,9 +12,6 @@ import java.io.Serializable;
 @Builder
 public class EventRegistration implements Serializable {
 
-    @Id
-    private String id;
-
     private EventRegistrationCategory eventRegistrationCategory;
 
     //private Instant timestamp;

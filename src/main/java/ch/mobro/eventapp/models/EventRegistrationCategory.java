@@ -10,8 +10,5 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class EventRegistrationCategory {
 
-    @Id
-    private String id;
-
     private String Category;
 }
