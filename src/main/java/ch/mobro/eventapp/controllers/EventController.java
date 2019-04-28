@@ -43,7 +43,7 @@ public class EventController {
 
     @PostMapping
     @Timed
-    public Event createEvent(@Valid @RequestBody Event event) {
+    public Event createEvent(@RequestBody Event event) {
         return eventRepository.save(event);
     }
 

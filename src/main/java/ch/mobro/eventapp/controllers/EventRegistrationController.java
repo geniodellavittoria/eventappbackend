@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static ch.mobro.eventapp.config.PathConstants.*;
-import static ch.mobro.eventapp.config.Variables.EVENT_REGISTRATION_ID;
 import static java.util.Collections.emptyList;
 
 @RequestMapping(EVENT + "/" + ID + EVENT_REGISTRATION)
@@ -48,15 +47,15 @@ public class EventRegistrationController {
         return event.get();
     }
 
-    @DeleteMapping(REGISTRATION_ID)
+    @DeleteMapping(USER_ID)
     @Timed
     public Event deleteEventRegistration(@PathVariable("id") String id,
-                                         @PathVariable(Variables.EVENT_REGISTRATION_ID) String eventRegistrationdId) {
+                                         @PathVariable(Variables.USER_ID) String username) {
         Optional<Event> event = repository.findById(id);
         if (!event.isPresent()) {
             return null;
         }
-        event.get().getEventRegistrations().removeIf(r -> r.getId().equals(eventRegistrationdId));
+        event.get().getEventRegistrations().removeIf(r -> r.getUser() != null && r.getUser().getUsername().equals(username));
         repository.save(event.get());
         return event.get();
     }

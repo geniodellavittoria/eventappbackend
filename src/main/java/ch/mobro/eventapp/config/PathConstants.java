@@ -6,8 +6,8 @@ public class PathConstants {
     public static final String USERNAME = "{username}";
     public static final String EVENT_CATEGORY = "/category";
     public static final String CATEGORY_ID = "/{" + Variables.CATEGORY_ID + "}";
-    public static final String INVITATION_ID = "/{" + Variables.CATEGORY_ID + "}";
-    public static final String REGISTRATION_ID = "/{" + Variables.EVENT_REGISTRATION_ID + "}";
+    public static final String EMAIL_ID = "/{" + Variables.EMAIL_ID + "}";
+    public static final String USER_ID = "/{" + Variables.USER_ID + "}";
     public static final String EVENT_REGISTRATION = "/registration";
     public static final String EVENT_INVITATION = "/invitation";
     public static final String USER = "/api/v1/user";

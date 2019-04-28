@@ -7,10 +7,10 @@ import org.springframework.data.annotation.Id;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class EventInvitation {
-
-    private String eventId;
 
     private String email;
 }

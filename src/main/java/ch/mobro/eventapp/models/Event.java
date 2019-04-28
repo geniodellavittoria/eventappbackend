@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Document
 public class Event implements Serializable {
 
@@ -21,8 +24,6 @@ public class Event implements Serializable {
     private String id;
 
     private User organizer;
-
-    private String userId;
 
     private String name;
 
@@ -52,6 +53,7 @@ public class Event implements Serializable {
 
     private List<EventRegistration> guestList = new ArrayList<>();
 
+    @NotNull
     private List<EventCategory> categories = new ArrayList<>();
 
 

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static ch.mobro.eventapp.config.PathConstants.*;
-import static ch.mobro.eventapp.config.Variables.EVENT_INVITATION_ID;
 import static java.util.Collections.emptyList;
 
 @RequestMapping(EVENT + "/" +  ID + EVENT_INVITATION)
@@ -49,15 +48,15 @@ public class EventInvitationController {
         return event.get();
     }
 
-    @DeleteMapping(INVITATION_ID)
+    @DeleteMapping(EMAIL_ID)
     @Timed
     public Event deleteEventInvitation(@PathVariable("id") String id,
-                                       @PathVariable(Variables.EVENT_INVITATION_ID) String eventInvitationId) {
+                                       @PathVariable(Variables.EMAIL_ID) String email) {
         Optional<Event> event = repository.findById(id);
         if (!event.isPresent()) {
             return null;
         }
-        event.get().getEventInvitations().removeIf(i -> i.getId().equals(eventInvitationId));
+        event.get().getEventInvitations().removeIf(i -> i.getEmail().equals(email));
         repository.save(event.get());
         return event.get();
     }

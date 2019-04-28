@@ -7,8 +7,10 @@ import org.springframework.data.annotation.Id;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class EventRegistrationCategory {
 
-    private String Category;
+    private String category;
 }

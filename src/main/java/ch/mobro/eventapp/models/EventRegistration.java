@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ public class EventRegistration implements Serializable {
 
     private EventRegistrationCategory eventRegistrationCategory;
 
-    //private Instant timestamp;
+    private Instant timestamp;
 
     private User user;
 

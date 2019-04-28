@@ -1,5 +1,6 @@
 package ch.mobro.eventapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -24,7 +25,6 @@ import static java.util.Collections.emptyList;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-//@Entity
 public class User implements Serializable, UserDetails {
 
     @Id
@@ -60,6 +60,7 @@ public class User implements Serializable, UserDetails {
     private Instant lastLoginTime;
     private Instant expirationDate;
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());

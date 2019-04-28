@@ -8,6 +8,7 @@ import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,9 @@ public class EventCategoryController {
         if (!event.isPresent()) {
             return null;
         }
+        if (event.get().getCategories() == null) {
+            event.get().setCategories(new ArrayList<>());
+        }
         event.get().getCategories().add(eventCategory);
         repository.save(event.get());
         return event.get();
@@ -51,7 +55,7 @@ public class EventCategoryController {
     @Timed
     public Event removeEventCategory(@PathVariable("id") String id, @PathVariable(Variables.CATEGORY_ID) String categoryId) {
         Optional<Event> event = repository.findById(id);
-        if (!event.isPresent()) {
+        if (!event.isPresent() || event.get().getCategories() == null) {
             return null;
         }
         event.get().getCategories().removeIf(c -> c.getCategory().equals(categoryId));
