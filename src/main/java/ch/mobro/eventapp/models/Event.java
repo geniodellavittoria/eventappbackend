@@ -53,7 +53,6 @@ public class Event implements Serializable {
 
     private List<EventRegistration> guestList = new ArrayList<>();
 
-    @NotNull
     private List<EventCategory> categories = new ArrayList<>();
 
 

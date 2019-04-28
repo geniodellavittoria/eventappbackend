@@ -12,5 +12,6 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class EventInvitation {
 
+    @NonNull
     private String email;
 }
