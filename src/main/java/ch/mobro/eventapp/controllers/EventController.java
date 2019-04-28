@@ -1,7 +1,9 @@
 package ch.mobro.eventapp.controllers;
 
 import ch.mobro.eventapp.models.Event;
+import ch.mobro.eventapp.models.User;
 import ch.mobro.eventapp.repositories.EventRepository;
+import ch.mobro.eventapp.repositories.UserRepository;
 import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,16 @@ import static ch.mobro.eventapp.config.PathConstants.ID;
 @Slf4j
 @RequestMapping(EVENT)
 @RestController
-//@Controller
 public class EventController {
 
     private final EventRepository eventRepository;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public EventController(EventRepository eventRepository) {
+    public EventController(EventRepository eventRepository, UserRepository userRepository) {
         this.eventRepository = eventRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -44,12 +48,15 @@ public class EventController {
     @PostMapping
     @Timed
     public Event createEvent(@RequestBody Event event) {
+        Optional<User> user = userRepository.findByUsername(event.getUsername());
+        user.ifPresent(event::setOrganizer);
         return eventRepository.save(event);
     }
 
     @PutMapping()
     @Timed
     public Event updateEvent(@Valid @RequestBody Event event) {
+
         return eventRepository.save(event);
     }
 

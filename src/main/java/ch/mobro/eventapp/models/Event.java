@@ -1,5 +1,6 @@
 package ch.mobro.eventapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -24,6 +25,9 @@ public class Event implements Serializable {
     private String id;
 
     private User organizer;
+
+    // will be provided by frontend for find full user and store in organizer;
+    private String username;
 
     private String name;
 
