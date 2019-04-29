@@ -39,6 +39,8 @@ public class Event implements Serializable {
 
     private Integer place;
 
+    private Integer usedPlace;
+
     private Double price;
 
     private String description;

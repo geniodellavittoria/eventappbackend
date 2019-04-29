@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static ch.mobro.eventapp.config.PathConstants.EVENT;
 import static ch.mobro.eventapp.config.PathConstants.ID;
@@ -36,13 +37,17 @@ public class EventController {
     @GetMapping
     @Timed
     public List<Event> getEvents() {
-        return eventRepository.findAll();
+        return eventRepository.findAll().stream()
+                .map(this::enrichWithUsedPlace)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(ID)
     @Timed
     public Event getEvent(@PathVariable("id") String id) {
-        return eventRepository.findById(id).orElse(null);
+        return eventRepository.findById(id)
+                .map(this::enrichWithUsedPlace)
+                .orElse(null);
     }
 
     @PostMapping
@@ -56,7 +61,6 @@ public class EventController {
     @PutMapping()
     @Timed
     public Event updateEvent(@Valid @RequestBody Event event) {
-
         return eventRepository.save(event);
     }
 
@@ -65,5 +69,10 @@ public class EventController {
     @Timed
     public void deleteEvent(@PathVariable("id") String id) {
         eventRepository.deleteById(id);
+    }
+
+    private Event enrichWithUsedPlace(Event event) {
+        event.setUsedPlace(event.getEventRegistrations().size());
+        return event;
     }
 }
