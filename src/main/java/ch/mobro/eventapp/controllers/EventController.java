@@ -58,10 +58,15 @@ public class EventController {
         return eventRepository.save(event);
     }
 
-    @PutMapping()
+    @PutMapping(ID)
     @Timed
-    public Event updateEvent(@Valid @RequestBody Event event) {
-        return eventRepository.save(event);
+    public Event updateEvent(@PathVariable("id") String id, @Valid @RequestBody Event event) {
+        Optional<Event> oldEvent = eventRepository.findById(id);
+        if (oldEvent.isPresent()) {
+            event.setId(oldEvent.get().getId());
+            return eventRepository.save(event);
+        }
+        return null;
     }
 
     @DeleteMapping(ID)
