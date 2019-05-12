@@ -58,7 +58,9 @@ public class EventRegistrationController {
                     .user(user.get())
                     .build();
             event.get().getEventRegistrations().add(eventRegistration);
-            return repository.save(event.get());
+            Event updatedEvent = repository.save(event.get());
+            updatedEvent.calculateUsedPlace();
+            return updatedEvent;
         }
         return event.get();
     }
@@ -72,7 +74,8 @@ public class EventRegistrationController {
             return null;
         }
         event.get().getEventRegistrations().removeIf(r -> r.getUser() != null && r.getUser().getUsername().equals(username));
-        repository.save(event.get());
-        return event.get();
+        Event updatedEvent = repository.save(event.get());
+        updatedEvent.calculateUsedPlace();
+        return updatedEvent;
     }
 }

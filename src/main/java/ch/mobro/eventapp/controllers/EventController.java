@@ -77,7 +77,7 @@ public class EventController {
     }
 
     private Event enrichWithUsedPlace(Event event) {
-        event.setUsedPlace(event.getEventRegistrations().size());
+        event.calculateUsedPlace();
         return event;
     }
 }

@@ -61,5 +61,8 @@ public class Event implements Serializable {
 
     private List<EventCategory> categories = new ArrayList<>();
 
+    public void calculateUsedPlace() {
+        usedPlace = getEventRegistrations().size();
+    }
 
 }
