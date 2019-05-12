@@ -70,7 +70,7 @@ public class EventController {
     }
 
     @DeleteMapping(ID)
-    @PreAuthorize("hasRole('ROLE_EVENT_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_EVENT_ADMIN')")
     @Timed
     public void deleteEvent(@PathVariable("id") String id) {
         eventRepository.deleteById(id);
