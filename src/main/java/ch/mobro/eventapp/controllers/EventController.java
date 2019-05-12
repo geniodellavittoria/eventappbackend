@@ -1,5 +1,6 @@
 package ch.mobro.eventapp.controllers;
 
+import ch.mobro.eventapp.dto.Response;
 import ch.mobro.eventapp.models.Event;
 import ch.mobro.eventapp.models.User;
 import ch.mobro.eventapp.repositories.EventRepository;
@@ -7,7 +8,6 @@ import ch.mobro.eventapp.repositories.UserRepository;
 import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -72,8 +72,9 @@ public class EventController {
     @DeleteMapping(ID)
 //    @PreAuthorize("hasRole('ROLE_EVENT_ADMIN')")
     @Timed
-    public void deleteEvent(@PathVariable("id") String id) {
+    public Response deleteEvent(@PathVariable("id") String id) {
         eventRepository.deleteById(id);
+        return Response.builder().success(true).build();
     }
 
     private Event enrichWithUsedPlace(Event event) {
